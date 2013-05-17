@@ -1,0 +1,5 @@
+# OS X nonsense 
+.DS_Store
+
+# AWS Ec2 credentials
+meteoric.config.sh
