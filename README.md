@@ -10,7 +10,9 @@ How To Use
 ==========
 
 Install node.js
+
 Install meteor (www.meteor.com)
+
 Install meteorite (https://github.com/oortcloud/meteorite)
 ```
 $ sudo -H npm install -g meteorite
