@@ -1,3 +1,0 @@
-Meteor.Router.add({
-  '/': 'postList'
-})
