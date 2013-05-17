@@ -3,10 +3,19 @@
   <div>
     {{content}}
   </div>
+  <div>
+    <a href="{{postPagePath this}}">Discuss</a>
+  </div>
 </template>
 
 <template name="postList">
   {{#each posts}}
     {{> postItem}}
   {{/each}}
+</template>
+
+<template name="postPage">
+  {{#with currentPost}}
+    {{> postItem}}
+  {{/with}}
 </template>
