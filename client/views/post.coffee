@@ -19,11 +19,7 @@ Template.postSubmit.events = {
       content: document.getElementById('content').value
       authorId: Meteor.user()
     }
-    post.slug = slugify(post.title)
     post._id = Posts.insert(post)
     Meteor.Router.to('postPage', post)
     return
 }
-
-slugify = (text) ->
-  text.toLowerCase().replace(/[^\w ]+/g,'').replace(/\ +/g,'-')
