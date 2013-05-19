@@ -24,4 +24,8 @@ Meteor.Router.add {
       post = Posts.findOne {slug:slug}, {_id:true}
       if post then Session.set 'currentPostId', post._id
   }
+
+  '/login': 'login'
+  '/submit': 'postSubmit'
+
 }

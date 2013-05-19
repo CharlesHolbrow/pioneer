@@ -7,3 +7,5 @@ insecure
 preserve-inputs
 coffeescript
 router
+accounts-ui
+accounts-github

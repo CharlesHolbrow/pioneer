@@ -19,3 +19,19 @@
     {{> postItem}}
   {{/with}}
 </template>
+
+<template name="postSubmit">
+  <form>
+    <div>
+      <label for="title">Title</label>
+      <input id="title">
+    </div>
+    <div>
+      <label for="content">Content</label>
+      <textarea id="content"placeholder="Add Awesomme"></textarea>
+    </div>
+    <div>
+      <input type="submit">
+    </div>
+  </form>
+</template>
