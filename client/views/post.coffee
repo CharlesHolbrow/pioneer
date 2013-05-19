@@ -8,6 +8,8 @@ Template.postPage.currentPost = ->
 
 # Post Submit
 Template.postSubmit.events = {
+  # how does this submit form event trigger?
+  # there seems to be some magic in the name
   'submit form': (event) ->
     event.preventDefault()
 
