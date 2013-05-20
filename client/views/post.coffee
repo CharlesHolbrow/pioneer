@@ -17,9 +17,9 @@ Template.postSubmit.events = {
     post = {
       title: document.getElementById('title').value
       content: document.getElementById('content').value
-      author: Meteor.user()
     }
-    post._id = Posts.insert(post)
-    Meteor.Router.to('postPage', post)
+
+    Meteor.call 'insertPost', post
+    Meteor.Router.to 'postList'
     return
 }

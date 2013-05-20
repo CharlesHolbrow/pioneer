@@ -2,7 +2,7 @@
 #   title
 #   content
 #   slug
-#   author
+#   authorId
 @Posts = new Meteor.Collection('posts')
 
 Posts.allow {
@@ -19,21 +19,3 @@ Posts.allow {
 }
 
 
-createSlug = (text) ->
-  text = text || ''
-  text.toLowerCase().replace(/[^\w ]+/g,'').replace(/\ +/g,'-')
-
-
-uniqueifySlug = (slug) ->
-  # if slug is unique
-  if !Posts.findOne({slug:slug}) then return slug
-
-  # get the number suffix if any
-  lastDigits = slug.match(/-*([0-9]*)$/)[1] || 0
-
-  # increment and append
-  lastDigits = ~~lastDigits + 1
-  newSlug = slug.replace(/-*[0-9]*$/, '-' + lastDigits)
-
-  # return new slug after verifying uniqueness
-  uniqueifySlug(newSlug)
