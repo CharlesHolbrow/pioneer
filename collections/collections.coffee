@@ -2,7 +2,7 @@
 #   title
 #   content
 #   slug
-#   authorId
+#   author
 @Posts = new Meteor.Collection('posts')
 
 Posts.allow {
