@@ -1,10 +1,14 @@
 # Post List helpers
 Template.postList.posts = ->
-  Posts.find()
+  Posts.find({}, {sort:{'createdAt':-1}, limit:5})
 
 # Post Page helpers
 Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))
+
+Template.postItem.date = ->
+  date = new Date @createdAt
+  date.toString()
 
 # Post Submit
 Template.postSubmit.events = {

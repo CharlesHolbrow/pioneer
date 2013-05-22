@@ -6,7 +6,7 @@ Meteor.methods {
     console.log('insertPost', doc)
     doc.authorId = this.userId
     doc.slug = uniqueifySlug createSlug(doc.title)
-    doc.createdAt = new Date().getTime()
+    doc.createdAt = doc.createdAt || new Date().getTime()
     Posts.insert doc
 }
 
