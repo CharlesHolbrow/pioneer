@@ -1,4 +1,12 @@
 Meteor.startup ->
+
+  # Only allow one user
+  Accounts.validateNewUser ->
+    if Meteor.users.find().count() < 1
+      return true
+    return false
+
+  # Initial Test Data
   if Posts.find().count() == 0
     Meteor.call 'insertPost', {
       title: 'A Test Post'

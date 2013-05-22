@@ -1,2 +1,3 @@
 Meteor.publish 'posts', ->
-  Posts.find {'createdAt':{$exists:1}},  {sort: {'createdAt': -1}}
+  # Caution: sorting on the server side is unreliable.
+  Posts.find {}
