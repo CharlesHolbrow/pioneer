@@ -1,1 +1,4 @@
 /* CSS declarations go here */
+html, body {
+  font-family: "inconsolata", "monaco", "consolas", "courier new";
+}
