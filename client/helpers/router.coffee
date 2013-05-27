@@ -47,8 +47,6 @@ Meteor.Router.add {
       Session.set 'currentPostId', null
   }
 
-
-
   '/login': 'login'
 
 }

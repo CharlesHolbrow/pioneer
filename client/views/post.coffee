@@ -21,6 +21,7 @@ Template.postEdit.events = {
     post = {
       title: document.getElementById('title').value
       content: document.getElementById('content').value
+      _id: Session.get('currentPostId')
     }
 
     Meteor.call 'insertPost', post
@@ -34,7 +35,7 @@ Template.postEdit.helpers {
 
   'content': ->
     post = Posts.findOne(Session.get('currentPostId'))
-    if post then post.content else 'NONE'
+    if post then post.content
 
   'title': ->
     post = Posts.findOne(Session.get('currentPostId'))

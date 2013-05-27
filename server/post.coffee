@@ -2,12 +2,23 @@ Meteor.methods {
   insertPost: (doc) ->
     # doc should contain at minimun: title, content
     # user MUST be logged in this.userId 
-    # TODO: verify
-    console.log('insertPost', doc)
-    doc.authorId = this.userId
-    doc.slug = uniqueifySlug createSlug(doc.title)
-    doc.createdAt = doc.createdAt || new Date().getTime()
-    Posts.insert doc
+    # TODO: verify we have a title and content
+
+    # verify we are logged in
+    return unless @userId
+
+    # If we have an _id, assume we are editing existing post
+    id = doc._id
+    delete doc['_id']
+
+    if id
+      doc.editedAt = new Date().getTime()
+      Posts.update {_id: id}, {$set: doc}
+    else
+      doc.authorId = this.userId
+      doc.slug = uniqueifySlug createSlug(doc.title)
+      doc.createdAt = doc.createdAt || new Date().getTime()
+      Posts.insert doc
 }
 
 createSlug = (text) ->
