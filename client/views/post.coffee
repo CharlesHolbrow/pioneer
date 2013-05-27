@@ -10,7 +10,7 @@ Template.postItem.date = ->
   date = new Date @createdAt
   date.toString()
 
-# Post Submit
+# Post Edit
 Template.postEdit.events = {
 
   # how does this submit form event trigger?
@@ -26,4 +26,7 @@ Template.postEdit.events = {
     Meteor.call 'insertPost', post
     Meteor.Router.to 'postList'
     return
+
+  'currentPost': ->
+    Posts.findOne(Session.get('currentPostId'))
 }

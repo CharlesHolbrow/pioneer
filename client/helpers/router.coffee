@@ -25,6 +25,18 @@ Meteor.Router.add {
       if post then Session.set 'currentPostId', post._id
   }
 
+  # If the currentPostId Session variable is an ID,
+  # assume we want to edit that doc
+  '/edit/:_id': {
+    'to': 'postEdit'
+    'and': (id) ->
+      post = Posts.findOne id
+      if post
+        Session.set 'currentPostId', id
+      else
+        Session.set 'currentPostId', null
+  }
+
   # The The difference between submitting a new post and
   # editing an existing post is specified. by the
   # currentPostId Session variable. If it's null, assume
@@ -35,17 +47,7 @@ Meteor.Router.add {
       Session.set 'currentPostId', null
   }
 
-  # If the currentPostId Session variable is an ID,
-  # assume we want to edit that doc
-  '/edit/:_id': {
-    'to': 'postEdit'
-    'and': (_id) ->
-      post = Posts.findOne {_id: _id}
-      if post
-        Session.set 'currentPostId', _id
-      else
-        Session.set 'currentPostId', null
-  }
+
 
   '/login': 'login'
 
