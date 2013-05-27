@@ -11,7 +11,7 @@ Template.postItem.date = ->
   date.toString()
 
 # Post Submit
-Template.postSubmit.events = {
+Template.postEdit.events = {
 
   # how does this submit form event trigger?
   # there seems to be some magic in the name

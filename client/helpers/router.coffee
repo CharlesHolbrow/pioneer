@@ -25,8 +25,29 @@ Meteor.Router.add {
       if post then Session.set 'currentPostId', post._id
   }
 
+  # The The difference between submitting a new post and
+  # editing an existing post is specified. by the
+  # currentPostId Session variable. If it's null, assume
+  # we are submitting a new post.
+  '/submit': {
+    'to': 'postEdit'
+    'and': ->
+      Session.set 'currentPostId', null
+  }
+
+  # If the currentPostId Session variable is an ID,
+  # assume we want to edit that doc
+  '/edit/:_id': {
+    'to': 'postEdit'
+    'and': (_id) ->
+      post = Posts.findOne {_id: _id}
+      if post
+        Session.set 'currentPostId', _id
+      else
+        Session.set 'currentPostId', null
+  }
+
   '/login': 'login'
-  '/submit': 'postSubmit'
 
 }
 
@@ -38,4 +59,4 @@ Meteor.Router.filters {
       return 'denied'
 }
 
-Meteor.Router.filter 'requireLogin', {only: 'postSubmit'}
+Meteor.Router.filter 'requireLogin', {only: 'postEdit'}
