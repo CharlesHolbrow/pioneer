@@ -26,7 +26,17 @@ Template.postEdit.events = {
     Meteor.call 'insertPost', post
     Meteor.Router.to 'postList'
     return
+  }
 
+Template.postEdit.helpers {
   'currentPost': ->
     Posts.findOne(Session.get('currentPostId'))
+
+  'content': ->
+    post = Posts.findOne(Session.get('currentPostId'))
+    if post then post.content else 'NONE'
+
+  'title': ->
+    post = Posts.findOne(Session.get('currentPostId'))
+    if post then post.title
 }
