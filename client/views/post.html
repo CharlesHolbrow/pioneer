@@ -1,7 +1,9 @@
 <template name="postItem">
   <h1>{{title}}</h1>
   <div>
-    {{{content}}}
+    {{#markdown}}
+      {{{content}}}
+    {{/markdown}}
   </div>
   <div>
     <div class="date">{{date}}</div>

@@ -58,7 +58,7 @@ because of some weird glitch we now have to uninstall and install fibers
 ```
 cd bundle/server
 npm uninstall fibers
-sudo npm install fibers
+npm install fibers
 cd ../..
 ```
 

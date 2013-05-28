@@ -8,3 +8,4 @@ coffeescript
 router
 accounts-ui
 accounts-github
+showdown
