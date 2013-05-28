@@ -1,7 +1,7 @@
 <template name="postItem">
   <h1>{{title}}</h1>
   <div>
-    {{content}}
+    {{{content}}}
   </div>
   <div>
     <div class="date">{{date}}</div>
@@ -32,7 +32,7 @@
     </div>
     <div>
       <label for="content">Content</label>
-      <textarea id="content" placeholder="Add Awesomme">{{{content}}}</textarea>
+      <textarea id="content" placeholder="Add Awesomme">{{content}}</textarea>
     </div>
     <div>
       <input type="submit">
