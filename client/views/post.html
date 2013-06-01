@@ -34,7 +34,9 @@
     </div>
     <div>
       <label for="content">Content</label>
-      <textarea id="content" placeholder="Add Awesomme">{{content}}</textarea>
+      <!-- {{{ content }}} requires spaces surrounding it
+      >{{{content}}}</ triggers a bug - a single leading newline character is removed -->
+      <textarea id="content" placeholder="Add Awesomme"> {{{ content }}} </textarea>
     </div>
     <div>
       <input type="submit">
