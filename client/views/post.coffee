@@ -10,6 +10,9 @@ Template.postItem.date = ->
   date = new Date @createdAt
   date.toString()
 
+Template.postItem.ownPost = ->
+  Meteor.userId() == this.authorId
+
 # Post Edit
 Template.postEdit.events = {
 

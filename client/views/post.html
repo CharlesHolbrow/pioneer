@@ -10,7 +10,7 @@
   </div>
   <div>
     <a href="{{postPagePath this}}">Discuss</a>
-    <a href="{{postEditPath this}}">Edit</a>
+    {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
   </div>
 </template>
 
