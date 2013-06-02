@@ -24,6 +24,7 @@ Template.postEdit.events = {
     post = {
       title: document.getElementById('title').value
       content: document.getElementById('content').value
+      tags: document.getElementById('tags').value.split(' ')
       _id: Session.get('currentPostId')
     }
 
@@ -43,4 +44,8 @@ Template.postEdit.helpers {
   'title': ->
     post = Posts.findOne(Session.get('currentPostId'))
     if post then post.title
+
+  'tags': ->
+    post = Posts.findOne(Session.get('currentPostId'))
+    if post and post.tags then post.tags.join(' ')
 }
