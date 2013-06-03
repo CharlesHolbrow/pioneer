@@ -1,4 +1,28 @@
 /* CSS declarations go here */
 html, body {
   font-family: "Verdana", "Geneva";
+  margin: 0px;
+}
+
+header#sidebar {
+  position: fixed;
+  height: 100%;
+  width: 12%;
+  border-right: 1px solid gray;
+  top: 0;
+}
+
+div#content {
+  position:relative;
+  margin-left: 12%;
+}
+
+div.post {
+  border-bottom: 1px solid gray;
+  padding-left: 3%;
+  padding-bottom: 30px;
+}
+
+div.post div {
+  max-width: 600px;
 }

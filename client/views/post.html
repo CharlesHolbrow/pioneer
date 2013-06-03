@@ -1,19 +1,21 @@
 <template name="postItem">
-  <h1>{{title}}</h1>
-  <div>
-    {{#markdown}}
-      {{{content}}}
-    {{/markdown}}
-  </div>
-  <div>
-    <div class="date">{{date}}</div>
-  </div>
-  <div>
-    Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
-  </div>
-  <div>
-    <a href="{{postPagePath this}}">Link</a>
-    {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
+  <div class="post">
+    <h1>{{title}}</h1>
+    <div>
+      {{#markdown}}
+        {{{content}}}
+      {{/markdown}}
+    </div>
+    <div>
+      <div class="date">{{date}}</div>
+    </div>
+    <div>
+      Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
+    </div>
+    <div>
+      <a href="{{postPagePath this}}">Link</a>
+      {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
+    </div>
   </div>
 </template>
 
