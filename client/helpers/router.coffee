@@ -48,6 +48,7 @@ Meteor.Router.add {
   }
 
   '/login': 'login'
+  '/projects': 'projectList'
 
 }
 

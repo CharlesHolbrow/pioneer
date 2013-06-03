@@ -1,29 +1,29 @@
 <template name="postItem">
-  <div class="post">
-    <h1>{{title}}</h1>
-    <div>
-      {{#markdown}}
-        {{{content}}}
-      {{/markdown}}
-    </div>
-    <div>
-      <div class="date">{{date}}</div>
-    </div>
-    <div>
-      Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
-    </div>
-    <div>
-      <a href="{{postPagePath this}}">Link</a>
-      {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
+  <div class="river-item">
+    <div class="post">
+      <h1>{{title}}</h1>
+      <div>
+        {{#markdown}}
+          {{{content}}}
+        {{/markdown}}
+      </div>
+      <div>
+        <div class="date">{{date}}</div>
+      </div>
+      <div>
+        Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
+      </div>
+      <div>
+        <a href="{{postPagePath this}}">Link</a>
+        {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
+      </div>
     </div>
   </div>
 </template>
 
 <template name="postList">
 {{#each posts}}
-  <div class="river-item">
-    {{> postItem}}
-  </div>
+  {{> postItem}}
 {{/each}}
 </template>
 
