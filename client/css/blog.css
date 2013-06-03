@@ -1,28 +1,42 @@
-/* CSS declarations go here */
 html, body {
   font-family: "Verdana", "Geneva";
   margin: 0px;
 }
 
+
+/* Major Page sections */
 header#sidebar {
   position: fixed;
   height: 100%;
-  width: 12%;
+  width: 14%;
   border-right: 1px solid gray;
   top: 0;
 }
 
-div#content {
+div#river {
   position:relative;
-  margin-left: 12%;
+  margin-left: 14%;
 }
 
-div.post {
+
+/* In the river */
+.river-item {
   border-bottom: 1px solid gray;
-  padding-left: 3%;
   padding-bottom: 30px;
+  padding-left: 3%;
 }
 
-div.post div {
+.river-item div {
   max-width: 600px;
+ }
+
+
+/* Post Edit */
+form textarea {
+  min-width: 80%;
+  min-height: 250px;
+}
+
+form label {
+  display: block;
 }

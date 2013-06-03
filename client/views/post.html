@@ -20,9 +20,11 @@
 </template>
 
 <template name="postList">
-  {{#each posts}}
+{{#each posts}}
+  <div class="river-item">
     {{> postItem}}
-  {{/each}}
+  </div>
+{{/each}}
 </template>
 
 <template name="postPage">
@@ -32,7 +34,7 @@
 </template>
 
 <template name="postEdit">
-  <form>
+  <form class="river-item">
     <div>
       <label for="title">Title</label>
       <input id="title" value="{{title}}">
