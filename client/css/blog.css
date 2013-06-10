@@ -32,9 +32,6 @@ header#sidebar a {
   text-decoration: none;
   font-size: 28px;
 }
-header#sidebar a:visited {
-  color: #44f;
-}
 header#sidebar h1 {
   text-align: center;
 }
@@ -48,7 +45,7 @@ header#sidebar h1 {
 }
 
 .river-item div.post div {
-  max-width: 640px;
+  max-width: 600px;
  }
 
 
