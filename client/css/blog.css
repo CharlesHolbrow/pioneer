@@ -1,8 +1,15 @@
+/* Global Styles */
 html, body {
   font-family: "Verdana", "Geneva";
   margin: 0px;
 }
 
+a {
+  color: #44f;
+}
+a:hover {
+  color: #00f;
+}
 
 /* Major Page sections */
 header#sidebar {
@@ -17,6 +24,19 @@ header#sidebar {
 div#river {
   position:relative;
   margin-left: 14%;
+}
+
+
+/* Sidebar content */
+header#sidebar a {
+  text-decoration: none;
+  font-size: 28px;
+}
+header#sidebar a:visited {
+  color: #44f;
+}
+header#sidebar h1 {
+  text-align: center;
 }
 
 
