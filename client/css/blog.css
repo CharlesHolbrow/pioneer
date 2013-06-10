@@ -9,6 +9,7 @@ header#sidebar {
   position: fixed;
   height: 100%;
   width: 14%;
+  overflow-x: hidden;
   border-right: 1px solid gray;
   top: 0;
 }
@@ -26,8 +27,8 @@ div#river {
   padding-left: 3%;
 }
 
-.river-item div {
-  max-width: 600px;
+.river-item div.post div {
+  max-width: 640px;
  }
 
 
