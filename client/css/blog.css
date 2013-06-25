@@ -5,10 +5,11 @@ html, body {
 }
 
 a {
-  color: #44f;
+  color: #4444ff;
+  text-decoration: none;
 }
 a:hover {
-  color: #00f;
+  color: #0000fa;
 }
 
 /* Major Page sections */
@@ -30,7 +31,7 @@ div#river {
 /* Sidebar content */
 header#sidebar a {
   text-decoration: none;
-  font-size: 28px;
+  font-size: 26px;
 }
 header#sidebar h1 {
   text-align: center;
@@ -46,7 +47,11 @@ header#sidebar h1 {
 
 .river-item div.post div {
   max-width: 600px;
- }
+}
+
+.river-item div.post div a:hover {
+  text-decoration: underline;
+}
 
 
 /* Post Edit */

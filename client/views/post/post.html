@@ -1,7 +1,7 @@
 <template name="postItem">
   <div class="river-item">
     <div class="post">
-      <h1>{{title}}</h1>
+      <h1 class="title"><a href="{{postPagePath this}}">{{title}}</a></h1>
       <div>
         {{#markdown}}
           {{{content}}}
