@@ -38,13 +38,22 @@ Meteor.Router.add {
   }
 
   # The The difference between submitting a new post and
-  # editing an existing post is specified. by the
+  # editing an existing post is specified by the
   # currentPostId Session variable. If it's null, assume
   # we are submitting a new post.
   '/submit': {
     'to': 'postEdit'
     'and': ->
       Session.set 'currentPostId', null
+  }
+
+  # A custom route that links to the post titled "About"
+  '/about': {
+    'as': 'about' # Name the route. Provide {{aboutPath/URL}} helpers
+    'to': 'postPage'
+    'and': ->
+      post = Posts.findOne {slug:'about'}, {_id:true}
+      if post then Session.set 'currentPostId', post._id
   }
 
   '/login': 'login'

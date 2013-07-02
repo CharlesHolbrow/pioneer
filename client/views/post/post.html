@@ -7,14 +7,18 @@
           {{{content}}}
         {{/markdown}}
       </div>
-      <div>
+      {{! Only published posts are displayed in the blog
+      Non published posts may be displayed via a custom route }}
+      {{#if publish}}
+      <div> {{! TODO: can I delete this extra div?}}
         <div class="date">{{date}}</div>
       </div>
       <div>
         Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
       </div>
+      {{/if}}
       <div>
-        <a href="{{postPagePath this}}">Link</a>
+        {{#if publish}}<a href="{{postPagePath this}}">Link</a>{{/if}}
         {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
       </div>
     </div>
@@ -41,13 +45,18 @@
     </div>
     <div>
       <label for="content">Content</label>
-      <!-- {{{ content }}} requires spaces surrounding it
-      >{{{content}}}</ triggers a bug - a single leading newline character is removed -->
+      {{! content helper requires a space before it.
+      Content helper with no leading spaceftriggers a bug:
+      A single leading newline character is removed }}
       <textarea id="content" placeholder="Add Awesomme"> {{{ content }}}</textarea>
     </div>
     <div>
       <label for="tags">tags</label>
       <input id="tags" value="{{tags}}" placeholder="space-separated tags list">
+    </div>
+    <div>
+      <label for="publish">Publish</label>
+      <input id="publish" type="checkbox" checked="{{publish}}">
     </div>
     <div>
       <input type="submit">

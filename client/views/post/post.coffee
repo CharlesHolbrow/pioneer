@@ -1,6 +1,6 @@
 # Post List helpers
 Template.postList.posts = ->
-  Posts.find({}, {sort:{'createdAt':-1}, limit:5})
+  Posts.find({publish:true}, {sort:{'createdAt':-1}, limit:6})
 
 # Post Page helpers
 Template.postPage.currentPost = ->
@@ -25,6 +25,7 @@ Template.postEdit.events = {
       title: document.getElementById('title').value
       content: document.getElementById('content').value
       tags: document.getElementById('tags').value.split(' ')
+      publish: document.getElementById('publish').checked
       _id: Session.get('currentPostId')
     }
 
@@ -48,4 +49,8 @@ Template.postEdit.helpers {
   'tags': ->
     post = Posts.findOne(Session.get('currentPostId'))
     if post and post.tags then post.tags.join(' ')
+
+  'publish': ->
+    post = Posts.findOne(Session.get('currentPostId'))
+    if post then post.publish
 }
