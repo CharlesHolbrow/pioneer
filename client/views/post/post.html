@@ -10,9 +10,7 @@
       {{! Only published posts are displayed in the blog
       Non published posts may be displayed via a custom route }}
       {{#if publish}}
-      <div> {{! TODO: can I delete this extra div?}}
-        <div class="date">{{date}}</div>
-      </div>
+      <div class="date">{{date}}</div>
       <div>
         Tags: {{#each tags}}<span class="tag">{{this}} </span>{{/each}}
       </div>
