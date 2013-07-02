@@ -38,19 +38,7 @@ Template.postEdit.helpers {
   'currentPost': ->
     Posts.findOne(Session.get('currentPostId'))
 
-  'content': ->
-    post = Posts.findOne(Session.get('currentPostId'))
-    if post then post.content
-
-  'title': ->
-    post = Posts.findOne(Session.get('currentPostId'))
-    if post then post.title
-
-  'tags': ->
+  'tagString': ->
     post = Posts.findOne(Session.get('currentPostId'))
     if post and post.tags then post.tags.join(' ')
-
-  'publish': ->
-    post = Posts.findOne(Session.get('currentPostId'))
-    if post then post.publish
 }

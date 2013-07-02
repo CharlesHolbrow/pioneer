@@ -37,6 +37,7 @@
 
 <template name="postEdit">
   <form class="river-item">
+    {{#with currentPost}}
     <div>
       <label for="title">Title</label>
       <input id="title" value="{{title}}">
@@ -50,7 +51,7 @@
     </div>
     <div>
       <label for="tags">tags</label>
-      <input id="tags" value="{{tags}}" placeholder="space-separated tags list">
+      <input id="tags" value="{{tagString}}" placeholder="space-separated tags list">
     </div>
     <div>
       <label for="publish">Publish</label>
@@ -59,5 +60,6 @@
     <div>
       <input type="submit">
     </div>
+    {{/with}}
   </form>
 </template>
