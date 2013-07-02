@@ -36,7 +36,8 @@ Template.postEdit.events = {
 
 Template.postEdit.helpers {
   'currentPost': ->
-    Posts.findOne(Session.get('currentPostId'))
+    post = Posts.findOne(Session.get('currentPostId'))
+    post or {}
 
   'tagString': ->
     post = Posts.findOne(Session.get('currentPostId'))
