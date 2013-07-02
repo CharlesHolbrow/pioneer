@@ -52,7 +52,7 @@ Meteor.Router.add {
     'as': 'about' # Name the route. Provide {{aboutPath/URL}} helpers
     'to': 'postPage'
     'and': ->
-      post = Posts.findOne {slug:'about'}, {_id:true}
+      post = Posts.findOne {tags:'about'}, {_id:true}
       if post then Session.set 'currentPostId', post._id
   }
 
