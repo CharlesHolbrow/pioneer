@@ -1,11 +1,13 @@
 <template name="postItem">
   <div class="river-item">
     <div class="post">
+      {{#if title}}
       <h1 class="title"><a href="{{postPagePath this}}">{{title}}</a></h1>
       <div class="date">{{date}}</div>
+      {{/if}}
       <div>
         {{#markdown}}
-          {{{content}}}
+        {{{content}}}
         {{/markdown}}
       </div>
       {{! Only published posts are displayed in the blog
@@ -16,7 +18,6 @@
       </div>
       {{/if}}
       <div>
-        {{#if publish}}<a href="{{postPagePath this}}">Link</a>{{/if}}
         {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
       </div>
     </div>
