@@ -7,8 +7,7 @@ Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))
 
 Template.postItem.date = ->
-  date = new Date @createdAt
-  date.toString()
+  moment(@createdAt).format('MMM D, YYYY')
 
 Template.postItem.ownPost = ->
   Meteor.userId() == this.authorId

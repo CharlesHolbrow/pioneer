@@ -12,6 +12,10 @@ a:hover {
   color: #0000fa;
 }
 
+.date {
+  color: #a0a0a0;
+}
+
 /* Major Page sections */
 header#sidebar {
   position: fixed;
@@ -54,11 +58,19 @@ header#sidebar h1 {
   text-decoration: underline;
 }
 
+.river-item h1 {
+  margin-bottom: 0;
+}
+
+.river-item .date {
+  margin-bottom: 30px;
+}
+
 
 /* Post Edit */
 form textarea {
   min-width: 80%;
-  min-height: 250px;
+  min-height: 300px;
 }
 
 form label {

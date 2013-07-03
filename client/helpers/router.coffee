@@ -13,13 +13,16 @@ Meteor.Router.add {
   '/': {
     'to': 'postList'
     'and': ->
-      unless subscriptions['postList']
-        subscriptions['postList'] = true;
-        Deps.nonreactive ->
-          # First Get the published posts
-          subscriptions['postList'] = Meteor.subscribe 'posts', {publish:true}, ->
-            # Once we have published posts, get all Posts
-            Meteor.subscribe 'posts'
+      # first post to appear at the top of the list. Get this first,
+      # then get the other posts
+      Meteor.subscribe 'lastPublishedPost', [], ->
+        unless subscriptions['postList']
+          subscriptions['postList'] = true;
+          Deps.nonreactive ->
+            # First Get the published posts
+            subscriptions['postList'] = Meteor.subscribe 'posts', {publish:true}, ->
+              # Once we have published posts, get all Posts
+              Meteor.subscribe 'posts'
   }
 
   # Post Page

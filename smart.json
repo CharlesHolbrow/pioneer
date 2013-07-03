@@ -1,6 +1,7 @@
 {
   "packages": {
     "router": {},
-    "marked": {}
+    "marked": {},
+    "momentjs": {}
   }
 }
