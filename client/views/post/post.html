@@ -3,7 +3,10 @@
     <div class="post">
       {{#if title}}
       <h1 class="title"><a href="{{postPagePath this}}">{{title}}</a></h1>
-      <div class="date">{{date}}</div>
+      <div class='meta'>
+        <div>By {{authorName}}</div>
+        <div class="date">{{date}}</div>
+      </div>
       {{/if}}
       <div>
         {{#markdown}}

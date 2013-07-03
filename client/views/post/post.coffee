@@ -12,6 +12,11 @@ Template.postItem.date = ->
 Template.postItem.ownPost = ->
   Meteor.userId() == this.authorId
 
+Template.postItem.authorName = ->
+  user = Meteor.user()
+  if user
+    user.profile.name
+
 # Post Edit
 Template.postEdit.events = {
 
