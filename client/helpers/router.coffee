@@ -1,3 +1,5 @@
+subscriptions = {}
+
 Meteor.Router.add {
   # Main page
 
@@ -8,7 +10,17 @@ Meteor.Router.add {
   # And the template variables:
   #   {{ postListPath }}
   #   {{ postListUrl }}
-  '/': 'postList'
+  '/': {
+    'to': 'postList'
+    'and': ->
+      unless subscriptions['postList']
+        subscriptions['postList'] = true;
+        Deps.nonreactive ->
+          # First Get the published posts
+          subscriptions['postList'] = Meteor.subscribe 'posts', {publish:true}, ->
+            # Once we have published posts, get all Posts
+            Meteor.subscribe 'posts'
+  }
 
   # Post Page
 
@@ -21,8 +33,19 @@ Meteor.Router.add {
   '/posts/:slug': {
     'to': 'postPage',
     'and': (slug) ->
-      post = Posts.findOne {slug:slug}, {_id:true}
-      if post then Session.set 'currentPostId', post._id
+      selector = {slug: slug}
+      # check if we already have the subscription we need
+      post = Posts.findOne selector
+      if post
+        Session.set 'currentPostId', post._id
+      else
+        # running subscribe non reactively prevents subscription
+        # cancelation when route changes
+        Deps.nonreactive ->
+          Meteor.subscribe 'posts', selector, ->
+            post = Posts.findOne selector, {_id:true}
+            if post then Session.set 'currentPostId', post._id
+
   }
 
   # If the currentPostId Session variable is an ID,
@@ -30,11 +53,20 @@ Meteor.Router.add {
   '/edit/:_id': {
     'to': 'postEdit'
     'and': (id) ->
-      post = Posts.findOne id
+      selector = {_id: id}
+      post = Posts.findOne selector
       if post
-        Session.set 'currentPostId', id
+        Session.set 'currentPostId', post._id
       else
-        Session.set 'currentPostId', null
+        # running subscribe non reactively prevents subscription 
+        # cancelation when route changes
+        Deps.nonreactive ->
+          Meteor.subscribe 'posts', selector, ->
+            post = Posts.findOne selector, {_id:true}
+            if post
+              Session.set 'currentPostId', post._id
+            else
+              Session.set 'currentPostId', null
   }
 
   # The The difference between submitting a new post and
@@ -52,12 +84,26 @@ Meteor.Router.add {
     'as': 'about' # Name the route. Provide {{aboutPath/URL}} helpers
     'to': 'postPage'
     'and': ->
-      post = Posts.findOne {tags:'about'}, {_id:true}
-      if post then Session.set 'currentPostId', post._id
+      selector = {tags:'about'}
+      post = Posts.findOne selector
+      if post
+        Session.set 'currentPostId', post._id
+      else
+        Deps.nonreactive ->
+          Meteor.subscribe 'posts', selector, ->
+            post = Posts.findOne selector
+            Session.set 'currentPostId', post._id
   }
 
   '/login': 'login'
-  '/projects': 'projectList'
+  '/projects': {
+    'to': 'projectList'
+    'and': ->
+      unless subscriptions['projects']
+        subscriptions['projects'] = true
+        Deps.nonreactive ->
+          subscriptions['projects'] = Meteor.subscribe 'posts', {tags:'projects'}
+  }
 }
 
 Meteor.Router.filters {

@@ -1,3 +1,3 @@
-Meteor.publish 'posts', ->
+Meteor.publish 'posts', (selector = {})->
   # Caution: sorting on the server side is unreliable.
-  Posts.find {}
+  Posts.find selector
