@@ -8,5 +8,5 @@ coffeescript
 router
 accounts-ui
 accounts-github
-showdown
 spiderable
+marked
