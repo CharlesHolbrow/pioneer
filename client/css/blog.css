@@ -1,7 +1,16 @@
 /* Global Styles */
 html, body {
-  font-family: "Verdana", "Geneva";
+  font-family: "Quicksand", sans-serif;
   margin: 0;
+}
+
+strong {
+  font-family: arial, sans-serif;
+  font-weight: 600;
+}
+
+h1, h2, h3, h4 ,h5, h6 {
+  font-weight: normal;
 }
 
 a {
@@ -9,12 +18,13 @@ a {
   text-decoration: none;
 }
 a:hover {
-  color: #0000fa;
+  color: #1212ca;
 }
 
 .meta {
   color: #a0a0a0;
   font-size: 90%;
+  margin-bottom: 25px;
 }
 
 /* Major Page sections */
@@ -62,11 +72,6 @@ header#sidebar h1 {
 .river-item h1 {
   margin-bottom: 0;
 }
-
-.river-item .date {
-  margin-bottom: 30px;
-}
-
 
 /* Post Edit */
 form textarea {

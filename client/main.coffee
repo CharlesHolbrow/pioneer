@@ -1,6 +1,7 @@
 marked.setOptions {
   langPrefix: ''
   breaks: false
-  highlight: (code) ->
-    hljs.highlightAuto(code).value
+  highlight: (code, lang) ->
+    if lang in ['js', 'javascript', 'json']
+      hljs.highlightAuto(code).value
 }
