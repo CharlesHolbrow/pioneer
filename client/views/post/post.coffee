@@ -6,6 +6,7 @@ Template.postList.posts = ->
 Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))
 
+# Post Item helpers
 Template.postItem.date = ->
   moment(@createdAt).format('MMM D, YYYY')
 
@@ -16,6 +17,11 @@ Template.postItem.authorName = ->
   user = Meteor.user()
   if user
     user.profile.name
+
+Template.postItem.events = {
+  'click .comments': (event) ->
+    Meteor.subscribe 'comments', this._id
+}
 
 # Post Edit
 Template.postEdit.events = {
