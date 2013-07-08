@@ -7,6 +7,12 @@ Meteor.methods {
     # verify we are logged in
     return unless @userId
 
+    # only users that isRoot are allowed to post
+    user = Meteor.users.findOne @userId
+    console.log 'Checking if user is root:', user.profile.name
+    return unless user.isRoot
+    console.log 'User is root. We allow posting.'
+
     # If we have an _id, assume we are editing existing post
     id = doc._id
     delete doc['_id']
@@ -15,7 +21,7 @@ Meteor.methods {
       doc.editedAt = new Date().getTime()
       Posts.update {_id: id}, {$set: doc}
     else
-      doc.authorId = this.userId
+      doc.authorId = @userId
       doc.slug = uniqueifySlug createSlug(doc.title)
       doc.createdAt = doc.createdAt || new Date().getTime()
       Posts.insert doc
