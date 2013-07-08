@@ -36,19 +36,9 @@ Meteor.Router.add {
   '/posts/:slug': {
     'to': 'postPage',
     'and': (slug) ->
-      selector = {slug: slug}
-      # check if we already have the subscription we need
-      post = Posts.findOne selector
-      if post
+      Meteor.subscribe 'postPage', slug, ->
+        post = Posts.findOne {slug:slug}
         Session.set 'currentPostId', post._id
-      else
-        # running subscribe non reactively prevents subscription
-        # cancelation when route changes
-        Deps.nonreactive ->
-          Meteor.subscribe 'posts', selector, ->
-            post = Posts.findOne selector, {_id:true}
-            if post then Session.set 'currentPostId', post._id
-
   }
 
   # If the currentPostId Session variable is an ID,

@@ -3,7 +3,7 @@
     <div class="post">
       {{#if title}}
       <h1 class="title"><a href="{{postPagePath this}}">{{title}}</a></h1>
-      <div class='meta'>
+      <div class='meta subtitle'>
         <div>By {{authorName}}</div>
         <div class="date">{{date}}</div>
       </div>
@@ -22,10 +22,7 @@
       {{/if}}
       <div>
         {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
-        <a href="#" class="comments">Comments</a>
       </div>
-    </div>
-    <div id="comments">
     </div>
   </div>
 </template>
@@ -33,12 +30,14 @@
 <template name="postList">
 {{#each posts}}
   {{> postItem}}
+  {{> bridge}}
 {{/each}}
 </template>
 
 <template name="postPage">
   {{#with currentPost}}
     {{> postItem}}
+    {{> commentList}}
   {{/with}}
 </template>
 
@@ -69,4 +68,8 @@
     </div>
     {{/with}}
   </form>
+</template>
+
+<template name="bridge">
+  <div class="bridge"></div>
 </template>

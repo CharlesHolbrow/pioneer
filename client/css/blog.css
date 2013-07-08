@@ -11,6 +11,7 @@ strong {
 
 h1, h2, h3, h4 ,h5, h6 {
   font-weight: normal;
+  margin-bottom: 0;
 }
 
 a {
@@ -24,6 +25,9 @@ a:hover {
 .meta {
   color: #a0a0a0;
   font-size: 90%;
+}
+
+.subtitle {
   margin-bottom: 25px;
 }
 
@@ -56,9 +60,7 @@ header#sidebar h1 {
 
 /* In the river */
 .river-item {
-  border-bottom: 1px solid gray;
-  padding-bottom: 30px;
-  padding-left: 3%;
+   padding-left: 3%;
 }
 
 .river-item div.post div {
@@ -71,6 +73,12 @@ header#sidebar h1 {
 
 .river-item h1 {
   margin-bottom: 0;
+}
+
+.bridge {
+  /* a bridge goes over the river */
+  padding-bottom: 30px;
+  border-bottom: 1px solid gray;
 }
 
 /* Post Edit */

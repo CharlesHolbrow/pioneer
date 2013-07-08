@@ -8,3 +8,11 @@ Meteor.publish 'lastPublishedPost', ->
 Meteor.publish 'comments', (postId) ->
   # TODO: Meteor 'check' function to verify postId
   Comments.find({postId:postId})
+
+Meteor.publish 'postPage', (slug) ->
+  selector = {slug:slug}
+  post = Posts.findOne(selector)
+  if post
+    # publish the post and comments
+    return [Posts.find(selector, {limit:1}), Comments.find(postId:post._id)]
+

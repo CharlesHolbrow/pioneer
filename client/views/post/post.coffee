@@ -18,10 +18,8 @@ Template.postItem.authorName = ->
   if user
     user.profile.name
 
-Template.postItem.events = {
-  'click .comments': (event) ->
-    Meteor.subscribe 'comments', this._id
-}
+Template.postItem.created = ->
+  this.data.showComments = false;
 
 # Post Edit
 Template.postEdit.events = {

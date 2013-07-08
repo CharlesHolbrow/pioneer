@@ -1,0 +1,15 @@
+<template name="commentItem">
+  <div class="comment">
+    <div class="meta">{{authorName}} says:</div>
+    <div>{{content}}</div>
+  </div>
+</template>
+
+<template name="commentList">
+  <div class="comments river-item">
+    <h2>Comments:</h2>
+    {{#each comments}}
+    {{> commentItem}}
+    {{/each}}
+   </div>
+</template>
