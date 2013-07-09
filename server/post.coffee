@@ -7,7 +7,7 @@ Meteor.methods {
     # verify we are logged in
     return unless @userId
 
-    # only users that isRoot are allowed to post
+    # only a user that isRoot is allowed to post
     user = Meteor.users.findOne @userId
     console.log 'Checking if user is root:', user.profile.name
     return unless user.isRoot
@@ -25,6 +25,19 @@ Meteor.methods {
       doc.slug = uniqueifySlug createSlug(doc.title)
       doc.createdAt = doc.createdAt || new Date().getTime()
       Posts.insert doc
+
+  insertComment: (doc) ->
+    user = Meteor.users.findOne @userId
+    return unless user
+
+    comment = {
+      content: doc.content
+      postId: doc.postId
+      authorId: @userId
+      authorName: user.profile.name
+      createdAt: new Date().getTime()
+    }
+    Comments.insert comment
 }
 
 createSlug = (text) ->
