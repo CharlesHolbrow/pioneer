@@ -13,3 +13,6 @@ Meteor.publish 'postPage', (slug) ->
     return [Posts.find(selector, {limit:1}), Comments.find(postId:post._id)]
   @ready()
 
+Meteor.publish 'users', ->
+  # Users will need to look up the post author
+  return Meteor.users.find({isRoot:true}, {fields:{profile:true}})

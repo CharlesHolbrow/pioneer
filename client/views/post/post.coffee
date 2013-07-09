@@ -14,7 +14,7 @@ Template.postItem.ownPost = ->
   Meteor.userId() == this.authorId
 
 Template.postItem.authorName = ->
-  user = Meteor.user()
+  user = Meteor.users.findOne this.authorId
   if user
     user.profile.name
 

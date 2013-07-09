@@ -5,3 +5,5 @@ marked.setOptions {
     if lang in ['js', 'javascript', 'json']
       hljs.highlightAuto(code).value
 }
+
+Meteor.subscribe 'users'
