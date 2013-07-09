@@ -35,7 +35,7 @@ header#sidebar {
   position: fixed;
   height: 100%;
   width: 14%;
-  overflow-x: scroll;
+  overflow-x: hidden;
   border-right: 1px solid gray;
   top: 0;
 }
@@ -43,7 +43,7 @@ header#sidebar {
 div#river {
   position:relative;
   margin-left: 14%;
-  overflow-x: hidden; /* Don't let the river scroll on x axis */
+  overflow-x: scroll; /* Don't let the river scroll on x axis */
 }
 
 
