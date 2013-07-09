@@ -36,7 +36,7 @@ header#sidebar {
   position: fixed;
   height: 100%;
   width: 14%;
-  overflow-x: hidden;
+  overflow-x: scroll;
   border-right: 1px solid gray;
   top: 0;
 }
