@@ -37,12 +37,14 @@
 <template name="postPage">
   {{#with currentPost}}
     {{> postItem}}
+    {{#if publish}}
     {{> commentList}}
+    {{/if}}
   {{/with}}
 </template>
 
 <template name="postEdit">
-  <form class="river-item">
+  <form class="river-item post-form">
     {{#with currentPost}}
     <div>
       <label for="title">Title</label>
