@@ -18,9 +18,6 @@ Template.postItem.authorName = ->
   if user
     user.profile.name
 
-Template.postItem.created = ->
-  this.data.showComments = false;
-
 # Post Edit
 Template.postEdit.events = {
 
