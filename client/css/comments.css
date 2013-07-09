@@ -12,3 +12,7 @@
 .comment-form input {
   width:600px;
 }
+
+.comment-controls {
+  margin-bottom: 30px
+}

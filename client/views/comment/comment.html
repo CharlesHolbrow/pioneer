@@ -8,12 +8,14 @@
 <template name="commentList">
   <div class="comments river-item">
     <h1>Comment</h1>
-    {{#if currentUser}}
-    {{> commentEdit}}
-    {{else}}
-    <span>{{ loginButtons }}</span> with Google or Github to comment.
-    {{/if}}
-
+    <div class="comment-controls">
+      <span>{{ loginButtons }}</span>
+      {{#if currentUser}}
+      {{> commentEdit}}
+      {{else}}
+      with Google or Github.
+      {{/if}}
+    </div>
     {{#each comments}}
     {{> commentItem}}
     {{/each}}
