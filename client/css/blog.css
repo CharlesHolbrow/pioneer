@@ -11,7 +11,6 @@ strong {
 
 h1, h2, h3, h4 ,h5, h6 {
   font-weight: normal;
-  margin-bottom: 0;
 }
 
 a {
@@ -79,12 +78,6 @@ header#sidebar h1 {
   /* a bridge runs over the river */
   padding-bottom: 30px;
   border-bottom: 1px solid gray;
-}
-
-/* Post Edit */
-form textarea {
-  min-width: 80%;
-  min-height: 300px;
 }
 
 form label {

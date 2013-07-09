@@ -1,0 +1,14 @@
+/* Comments */
+.comments {
+  min-height: 180px; /* Tall enough for sign in buttons */
+  margin-bottom: 30px;
+}
+
+.comments h1 {
+  margin-bottom: 5px;
+  margin-top: 30px;
+}
+
+.comment-form input {
+  width:600px;
+}

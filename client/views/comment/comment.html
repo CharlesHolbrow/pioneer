@@ -7,9 +7,21 @@
 
 <template name="commentList">
   <div class="comments river-item">
-    <h2>Comments:</h2>
+    <h1>Comment</h1>
+    {{#if currentUser}}
+    {{> commentEdit}}
+    {{else}}
+    <span>{{ loginButtons }}</span> with Google or Github to comment.
+    {{/if}}
+
     {{#each comments}}
     {{> commentItem}}
     {{/each}}
    </div>
+</template>
+
+<template name="commentEdit">
+  <form class="comment-form">
+    <input placeholder="Enter text and press RETURN to submit">
+  </form>
 </template>

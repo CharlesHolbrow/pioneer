@@ -5,6 +5,7 @@
 #   authorId
 #   createdAt
 #   tags
+#   publish
 @Posts = new Meteor.Collection('posts')
 
 # Comments
