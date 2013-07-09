@@ -11,4 +11,5 @@ Meteor.publish 'postPage', (slug) ->
   if post
     # publish the post and comments
     return [Posts.find(selector, {limit:1}), Comments.find(postId:post._id)]
+  @ready()
 

@@ -1,0 +1,2 @@
+Handlebars.registerHelper 'debugger', -> 
+  debugger
