@@ -13,24 +13,23 @@ Router.onAfterAction(
   , except: []
 )
 
-# Post List Routes
+
 Router.map ->
 
+  # Post List Routes
   @route 'projects',
     path: '/projects'
     template: 'postList'
     waitOn: ->
       Meteor.subscribe 'posts', {tags:'projects'}
-      
+
   @route 'posts',
     template: 'postList'
     path: '/'
     waitOn: ->
       Meteor.subscribe 'posts', {publish:true}
 
-# Single Post Routes, (Edit, view, submit, etc)
-Router.map ->
-
+  # Single Post Routes, (Edit, view, submit, etc)
   @route 'postPage',
     path: '/posts/:slug'
     data: ->
@@ -62,8 +61,7 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'posts', {tags: 'about'}
 
-# Misc Routes
-Router.map ->
+  # Misc Routes
   @route 'login'
   @route 'signin',
     template: 'login'
