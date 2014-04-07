@@ -11,7 +11,7 @@ Router.map ->
     data: ->
       Posts.findOne {slug: @params.slug}
     waitOn: ->
-      Meteor.subscribe 'posts', {slug: @params.slug}
+      Meteor.subscribe 'postPage', @params.slug
 
 Router.map ->
   @route 'postList',
@@ -19,8 +19,22 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'posts', {publish:true}
 
+Router.map ->
+  @route 'login'
+  @route 'signin',
+    template: 'login'
+  return
 
-
+Router.map ->
+  @route 'edit',
+    path: '/edit/:_id'
+    template: 'postEdit'
+    data: ->
+      Posts.findOne {_id: @params._id}
+    waitOn: ->
+      id = @params._id
+      Session.set 'currentPostId', id
+      Meteor.subscribe 'posts', {_id: id}
 
 
 ###

@@ -21,7 +21,7 @@
       </div>
       {{/if}}
       <div>
-        {{#if ownPost}}<a href="{{postEditPath this}}">Edit</a>{{/if}}
+        {{#if ownPost}}<a href="{{pathFor 'edit'}}">Edit</a>{{/if}}
       </div>
     </div>
   </div>
@@ -43,7 +43,6 @@
 
 <template name="postEdit">
   <form class="river-item post-form">
-    {{#with currentPost}}
     <div>
       <label for="title">Title</label>
       <input id="title" value="{{title}}">
@@ -51,7 +50,7 @@
     <div>
       <label for="content">Content</label>
       {{! content helper requires a space before it.
-      Content helper with no leading spaceftriggers a bug:
+      Content helper with no leading space triggers a bug:
       A single leading newline character is removed }}
       <textarea id="content" placeholder="Add Awesomme"> {{{ content }}}</textarea>
     </div>
@@ -70,7 +69,6 @@
     <div>
       <input type="submit">
     </div>
-    {{/with}}
   </form>
 </template>
 
