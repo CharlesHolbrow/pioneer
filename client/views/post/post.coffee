@@ -26,9 +26,13 @@ Template.postEdit.events = {
   'submit form': (event) ->
     event.preventDefault()
 
+    # Hack: renderer demands that first char is newline
+    content = document.getElementById('content').value
+    content = if content[0] == '\n' then content else '\n' + content
+
     post = {
       title: document.getElementById('title').value
-      content: document.getElementById('content').value
+      content: content
       tags: document.getElementById('tags').value.split(' ')
       publish: document.getElementById('publish').checked
       _id: Session.get('currentPostId')
