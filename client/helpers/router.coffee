@@ -13,7 +13,24 @@ Router.onAfterAction(
   , except: []
 )
 
+# Post List Routes
 Router.map ->
+
+  @route 'projects',
+    path: '/projects'
+    template: 'postList'
+    waitOn: ->
+      Meteor.subscribe 'posts', {tags:'projects'}
+      
+  @route 'posts',
+    template: 'postList'
+    path: '/'
+    waitOn: ->
+      Meteor.subscribe 'posts', {publish:true}
+
+# Single Post Routes, (Edit, view, submit, etc)
+Router.map ->
+
   @route 'postPage',
     path: '/posts/:slug'
     data: ->
@@ -21,20 +38,6 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'postPage', @params.slug
 
-Router.map ->
-  @route 'posts',
-    template: 'postList'
-    path: '/'
-    waitOn: ->
-      Meteor.subscribe 'posts', {publish:true}
-
-Router.map ->
-  @route 'login'
-  @route 'signin',
-    template: 'login'
-  return
-
-Router.map ->
   @route 'edit',
     path: '/edit/:_id'
     template: 'postEdit'
@@ -44,18 +47,13 @@ Router.map ->
       id = @params._id
       Session.set 'currentPostId', id
       Meteor.subscribe 'posts', {_id: id}
+
   @route 'submit',
     path: '/submit'
     template: 'postEdit'
     waitOn: ->
       Session.set 'currentPostId', null
 
-Router.map ->
-  @route 'projects',
-    path: '/projects'
-    template: 'postList'
-    waitOn: ->
-      Meteor.subscribe 'posts', {tags:'projects'}
   @route 'about',
     path: '/about',
     template: 'postPage',
@@ -63,3 +61,10 @@ Router.map ->
       Posts.findOne {tags: 'about'}
     waitOn: ->
       Meteor.subscribe 'posts', {tags: 'about'}
+
+# Misc Routes
+Router.map ->
+  @route 'login'
+  @route 'signin',
+    template: 'login'
+  return
