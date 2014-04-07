@@ -1,5 +1,29 @@
 subscriptions = {}
 
+Router.configure
+  layoutTemplate: 'master',
+  notFoundTemplate: 'missing',
+  # loadingTemplate: 'loading'
+
+Router.map ->
+  @route 'postPage',
+    path: '/posts/:slug'
+    data: ->
+      Posts.findOne {slug: @params.slug}
+    waitOn: ->
+      Meteor.subscribe 'posts', {slug: @params.slug}
+
+Router.map ->
+  @route 'postList',
+    path: '/'
+    waitOn: ->
+      Meteor.subscribe 'posts', {publish:true}
+
+
+
+
+
+###
 Meteor.Router.add {
   # Main page
 
@@ -108,3 +132,4 @@ Meteor.Router.filters {
 }
 
 Meteor.Router.filter 'requireLogin', {only: 'postEdit'}
+###

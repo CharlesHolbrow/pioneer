@@ -9,7 +9,7 @@
   <div class="comments river-item">
     <h1>Comment</h1>
     <div class="comment-controls">
-      <span>{{ loginButtons }}</span>
+      <span>{{> loginButtons }}</span>
       {{#if currentUser}}
       {{> commentEdit}}
       {{else}}

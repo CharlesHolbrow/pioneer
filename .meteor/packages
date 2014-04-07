@@ -3,9 +3,7 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-preserve-inputs
 coffeescript
-router
 accounts-ui
 accounts-github
 spiderable
@@ -13,3 +11,4 @@ marked
 momentjs
 accounts-google
 standard-app-packages
+iron-router

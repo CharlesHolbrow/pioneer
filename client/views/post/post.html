@@ -2,7 +2,7 @@
   <div class="river-item">
     <div class="post">
       {{#if title}}
-      <h1 class="title"><a href="{{postPagePath this}}">{{title}}</a></h1>
+      <h1 class="title"><a href="{{pathFor 'postPage'}}">{{title}}</a></h1>
       <div class='meta subtitle'>
         <div>By {{authorName}}</div>
         <div class="date">{{date}}</div>
@@ -35,12 +35,10 @@
 </template>
 
 <template name="postPage">
-  {{#with currentPost}}
-    {{> postItem}}
-    {{#if publish}}
-    {{> commentList}}
-    {{/if}}
-  {{/with}}
+  {{> postItem}}
+  {{#if publish}}
+  {{> commentList}}
+  {{/if}}
 </template>
 
 <template name="postEdit">
@@ -63,7 +61,11 @@
     </div>
     <div>
       <label for="publish">Publish</label>
-      <input id="publish" type="checkbox"{{#if publish}} checked="true"{{/if}}>
+      {{#if publish}}
+      <input id="publish" type="checkbox" checked="{{publish}}" >
+      {{else}}
+      <input id="publish" type="checkbox">
+      {{/if}}
     </div>
     <div>
       <input type="submit">
