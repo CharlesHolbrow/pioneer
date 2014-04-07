@@ -26,6 +26,9 @@ Template.postEdit.events = {
   'submit form': (event) ->
     event.preventDefault()
 
+    target = event.currentTarget
+    target.disabled = true
+
     # Hack: renderer demands that first char is newline
     content = document.getElementById('content').value
     content = if content[0] == '\n' then content else '\n' + content
@@ -38,8 +41,15 @@ Template.postEdit.events = {
       _id: Session.get('currentPostId')
     }
 
-    Meteor.call 'insertPost', post
-    Router.go 'posts'
+    Meteor.call 'insertPost', post, (error, slug)->
+      if error
+        target.disabled = false
+        console.log 'Submit Error:', error
+      else if slug
+        Router.go 'postPage', {slug:slug}
+      else
+        Router.go 'posts'
+
     return
 }
 

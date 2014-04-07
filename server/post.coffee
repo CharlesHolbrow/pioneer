@@ -20,6 +20,7 @@ Meteor.methods {
     if id
       doc.editedAt = new Date().getTime()
       Posts.update {_id: id}, {$set: doc}
+      return Posts.findOne({_id: id}).slug
     else
       doc.authorId = @userId
       doc.slug = uniqueifySlug createSlug(doc.title)
