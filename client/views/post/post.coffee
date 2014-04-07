@@ -1,6 +1,6 @@
 # Post List helpers
 Template.postList.posts = ->
-  Posts.find({publish:true}, {sort:{'createdAt':-1}, limit:6})
+  Posts.find({}, {sort:{'createdAt':-1}, limit:8})
 
 # Post Page helpers
 Template.postPage.currentPost = ->
