@@ -2,6 +2,7 @@
 html, body {
   font-family: "Quicksand", sans-serif;
   margin: 0;
+  overflow-y: scroll;
 }
 
 strong {
@@ -38,12 +39,14 @@ header#sidebar {
   overflow-x: hidden;
   border-right: 1px solid gray;
   top: 0;
+  box-sizing: border-box;
 }
 
 div#river {
-  position:relative;
-  margin-left: 14%;
-  overflow-x: scroll; /* Don't let the river scroll on x axis */
+  position: absolute;
+  left: 14%;
+  width: 86%;
+  overflow-x: hidden; /* Don't let the river scroll on x axis */
 }
 
 
@@ -82,4 +85,9 @@ header#sidebar h1 {
 
 form label {
   display: block;
+}
+
+code {
+  overflow-x: scroll;
+  width: 100%;
 }
