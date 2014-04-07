@@ -35,7 +35,7 @@ Template.postEdit.events = {
     }
 
     Meteor.call 'insertPost', post
-    Router.go 'postList'
+    Router.go 'posts'
     return
 }
 
