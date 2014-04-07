@@ -49,10 +49,7 @@
     </div>
     <div>
       <label for="content">Content</label>
-      {{! content helper requires a space before it.
-      Content helper with no leading space triggers a bug:
-      A single leading newline character is removed }}
-      <textarea id="content" placeholder="Add Awesomme"> {{{ content }}}</textarea>
+      <textarea id="content" placeholder="Add Awesomme">{{{ content }}}</textarea>
     </div>
     <div>
       <label for="tags">Tags</label>
