@@ -83,6 +83,10 @@ header#sidebar h1 {
   border-bottom: 1px solid gray;
 }
 
+.loading-more {
+  margin-bottom: 50%;
+}
+
 form label {
   display: block;
 }

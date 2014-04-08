@@ -11,7 +11,6 @@ Template.postList.finished = ->
 Template.postList.rendered = ->
   $(window).on 'DOMContentLoaded load resize scroll', loadIfNeeded
 
-
 # Post Page helpers
 Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))

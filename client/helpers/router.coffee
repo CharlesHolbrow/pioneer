@@ -6,15 +6,14 @@ window.subscriptions =
   current: null # not EJSONable, cannot use Session.set
 
 window.loadIfNeeded = ()->
-  setTimeout ->
-    loadEl= $('.loading-more')[0]
-    return unless loadEl and
-      isElementInViewport(loadEl) and
-      subscriptions.current.ready()
-    subscriptions.current.loadNextPage()
-  , 1
+  loadEl= $('.loading-more')[0]
+  return unless loadEl and
+    isElementInViewport(loadEl) and
+    subscriptions.current.ready()
+  subscriptions.current.loadNextPage()
 
 Deps.autorun ->
+  Session.get 'postsSelector' # make reactive
   if subscriptions.published.ready() or subscriptions.projects.ready()
     loadIfNeeded()
 
@@ -28,7 +27,6 @@ Router.map ->
       subscriptions.current = subscriptions.projects
       Session.set 'postsSelector', {tags: 'projects'}
       return subscriptions.current
-    onAfterAction: loadIfNeeded
 
   @route 'posts',
     template: 'postList'
@@ -37,7 +35,6 @@ Router.map ->
       subscriptions.current = subscriptions.published
       Session.set 'postsSelector', {publish: true}
       return subscriptions.current
-    onAfterAction: loadIfNeeded
 
 Router.map ->
 
@@ -85,7 +82,7 @@ Router.configure
   notFoundTemplate: 'missing',
   # loadingTemplate: 'loading'
 
-Router.onAfterAction(
-  -> $('body').scrollTop 0
-  , except: []
+Router.onAfterAction( ->
+  $('body').scrollTop 0
+, except: []
 )
