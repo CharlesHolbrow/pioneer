@@ -1,6 +1,6 @@
 # Post List helpers
 Template.postList.posts = ->
-  Posts.find({}, {sort:{'createdAt':-1}, limit:8})
+  Posts.find(Session.get 'postsSelector', {sort:{'createdAt':-1}})
 
 # Post Page helpers
 Template.postPage.currentPost = ->

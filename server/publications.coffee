@@ -1,6 +1,8 @@
-Meteor.publish 'posts', (selector = {})->
+Meteor.publish 'posts', (selector = {}, limit=5)->
   # Caution: sorting on the server side is unreliable.
-  Posts.find selector
+  Posts.find selector,
+    sort:{createdAt:-1}
+    limit: limit
 
 Meteor.publish 'lastPublishedPost', ->
   Posts.find({publish: true}, {sort:[['createdAt', 'desc']], limit:1})

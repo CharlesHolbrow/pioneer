@@ -9,7 +9,8 @@
       "router": {},
       "marked": {},
       "momentjs": {},
-      "iron-router": {}
+      "iron-router": {},
+      "paginated-subscription": {}
     },
     "packages": {
       "router": {
@@ -31,6 +32,11 @@
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.7.0",
         "commit": "05f34bc48c4cad9fdaa366c1ddcabe6980232ece"
+      },
+      "paginated-subscription": {
+        "git": "https://github.com/tmeasday/meteor-paginated-subscription.git",
+        "tag": "v0.1.2",
+        "commit": "35e0c6112df2b4cfeb60b559276a93cac5ee2dd6"
       },
       "page-js-ie-support": {
         "git": "https://github.com/tmeasday/meteor-page-js-ie-support.git",

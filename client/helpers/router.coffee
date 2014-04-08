@@ -1,18 +1,9 @@
-subscriptions = {}
+Session.set 'postsSelector', {}
+Session.set 'currentPostsSubscription', null
 
-Router.configure
-  layoutTemplate: 'master',
-  notFoundTemplate: 'missing',
-  # loadingTemplate: 'loading'
-
-# scrollUp = RouteController.extend
-  # onBeforeAction: -> $('body').scrollTop 0
-
-Router.onAfterAction(
-  -> $('body').scrollTop 0
-  , except: []
-)
-
+window.subscriptions =
+  published: new Meteor.subscribeWithPagination 'posts', {publish: true}, 3
+  projects: new Meteor.subscribeWithPagination 'posts', {tags: 'projects'}, 1
 
 Router.map ->
 
@@ -21,13 +12,17 @@ Router.map ->
     path: '/projects'
     template: 'postList'
     waitOn: ->
-      Meteor.subscribe 'posts', {tags:'projects'}
+      Session.set 'postsSelector', {tags: 'projects'}
+      Session.set 'currentPostsSubscription', subscriptions.projects
 
   @route 'posts',
     template: 'postList'
     path: '/'
     waitOn: ->
-      Meteor.subscribe 'posts', {publish:true}
+      Session.set 'postsSelector', {publish: true}
+      Session.set 'currentPostsSubscription', subscriptions.published
+
+Router.map ->
 
   # Single Post Routes, (Edit, view, submit, etc)
   @route 'postPage',
@@ -66,3 +61,14 @@ Router.map ->
   @route 'signin',
     template: 'login'
   return
+
+# Misc router configuration
+Router.configure
+  layoutTemplate: 'master',
+  notFoundTemplate: 'missing',
+  # loadingTemplate: 'loading'
+
+Router.onAfterAction(
+  -> $('body').scrollTop 0
+  , except: []
+)

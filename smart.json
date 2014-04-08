@@ -3,6 +3,7 @@
     "router": {},
     "marked": {},
     "momentjs": {},
-    "iron-router": {}
+    "iron-router": {},
+    "paginated-subscription": {}
   }
 }
