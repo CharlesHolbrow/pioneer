@@ -1,6 +1,6 @@
 # Post List helpers
 Template.postList.posts = ->
-  Posts.find(Session.get 'postsSelector', {sort:{'createdAt':-1}})
+  Posts.find Session.get('postsSelector'), {sort:{'createdAt':-1}, reactive: true}
 
 Template.postList.finished = ->
   Session.get 'postsSelector' # make reactive
@@ -9,12 +9,7 @@ Template.postList.finished = ->
   return Posts.find().count() < sub.loaded()
 
 Template.postList.rendered = ->
-  computation = Deps.autorun ->
-    return unless subscriptions.current.ready()
-    $(window).on 'DOMContentLoaded load resize scroll', loadIfNeeded
-    # don't run after Template rendered, subscription ready
-    if computation and not computation.firstRun
-      computation.stop()
+  $(window).on 'DOMContentLoaded load resize scroll', loadIfNeeded
 
 
 # Post Page helpers
@@ -23,7 +18,7 @@ Template.postPage.currentPost = ->
 
 # Post Item helpers
 Template.postItem.date = ->
-  moment(@createdAt).format('MMM D, YYYY')
+  moment(@createdAt).format('MMM D, YYYY - hh:mm:ss')
 
 Template.postItem.ownPost = ->
   Meteor.userId() == this.authorId

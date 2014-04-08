@@ -6,13 +6,13 @@ window.subscriptions =
   current: null # not EJSONable, cannot use Session.set
 
 window.loadIfNeeded = ()->
-    Meteor.setTimeout ->
-      loadEl= $('.loading-more')[0]
-      return unless loadEl and
-        isElementInViewport loadEl and
-        nsubscriptions.current.ready()
-      subscriptions.current.loadNextPage()
-    , 1
+  setTimeout ->
+    loadEl= $('.loading-more')[0]
+    return unless loadEl and
+      isElementInViewport(loadEl) and
+      subscriptions.current.ready()
+    subscriptions.current.loadNextPage()
+  , 1
 
 Deps.autorun ->
   if subscriptions.published.ready() or subscriptions.projects.ready()
@@ -28,7 +28,7 @@ Router.map ->
       subscriptions.current = subscriptions.projects
       Session.set 'postsSelector', {tags: 'projects'}
       return subscriptions.current
-    after: loadIfNeeded
+    onAfterAction: loadIfNeeded
 
   @route 'posts',
     template: 'postList'
@@ -37,7 +37,7 @@ Router.map ->
       subscriptions.current = subscriptions.published
       Session.set 'postsSelector', {publish: true}
       return subscriptions.current
-    after: loadIfNeeded
+    onAfterAction: loadIfNeeded
 
 Router.map ->
 

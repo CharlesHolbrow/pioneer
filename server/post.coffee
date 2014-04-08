@@ -26,6 +26,7 @@ Meteor.methods {
       doc.slug = uniqueifySlug createSlug(doc.title)
       doc.createdAt = doc.createdAt || new Date().getTime()
       Posts.insert doc
+      return doc.slug
 
   insertComment: (doc) ->
     user = Meteor.users.findOne @userId
