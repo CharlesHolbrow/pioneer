@@ -2,8 +2,21 @@ Session.set 'postsSelector', {}
 
 window.subscriptions =
   published: new Meteor.subscribeWithPagination 'posts', {publish: true}, 3
-  projects: new Meteor.subscribeWithPagination 'posts', {tags: 'projects'}, 1
+  projects: new Meteor.subscribeWithPagination 'posts', {tags: 'projects'}, 2
   current: null # not EJSONable, cannot use Session.set
+
+window.loadIfNeeded = ()->
+    Meteor.setTimeout ->
+      loadEl= $('.loading-more')[0]
+      return unless loadEl and
+        isElementInViewport loadEl and
+        nsubscriptions.current.ready()
+      subscriptions.current.loadNextPage()
+    , 1
+
+Deps.autorun ->
+  if subscriptions.published.ready() or subscriptions.projects.ready()
+    loadIfNeeded()
 
 Router.map ->
 
@@ -12,15 +25,19 @@ Router.map ->
     path: '/projects'
     template: 'postList'
     waitOn: ->
-      Session.set 'postsSelector', {tags: 'projects'}
       subscriptions.current = subscriptions.projects
+      Session.set 'postsSelector', {tags: 'projects'}
+      return subscriptions.current
+    after: loadIfNeeded
 
   @route 'posts',
     template: 'postList'
     path: '/'
     waitOn: ->
-      Session.set 'postsSelector', {publish: true}
       subscriptions.current = subscriptions.published
+      Session.set 'postsSelector', {publish: true}
+      return subscriptions.current
+    after: loadIfNeeded
 
 Router.map ->
 

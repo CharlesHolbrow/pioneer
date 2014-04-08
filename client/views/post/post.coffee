@@ -3,9 +3,19 @@ Template.postList.posts = ->
   Posts.find(Session.get 'postsSelector', {sort:{'createdAt':-1}})
 
 Template.postList.finished = ->
+  Session.get 'postsSelector' # make reactive
   sub = subscriptions.current
   return false unless sub.ready and sub.ready()
   return Posts.find().count() < sub.loaded()
+
+Template.postList.rendered = ->
+  computation = Deps.autorun ->
+    return unless subscriptions.current.ready()
+    $(window).on 'DOMContentLoaded load resize scroll', loadIfNeeded
+    # don't run after Template rendered, subscription ready
+    if computation and not computation.firstRun
+      computation.stop()
+
 
 # Post Page helpers
 Template.postPage.currentPost = ->
