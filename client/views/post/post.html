@@ -32,7 +32,12 @@
   {{> postItem}}
   {{> bridge}}
 {{/each}}
+{{#unless finished}}
+ <div class="river-item endpoint">loading more...</div>
+{{/unless}}
 </template>
+
+
 
 <template name="postPage">
   {{> postItem}}

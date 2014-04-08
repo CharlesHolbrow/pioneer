@@ -1,9 +1,9 @@
 Session.set 'postsSelector', {}
-Session.set 'currentPostsSubscription', null
 
 window.subscriptions =
   published: new Meteor.subscribeWithPagination 'posts', {publish: true}, 3
   projects: new Meteor.subscribeWithPagination 'posts', {tags: 'projects'}, 1
+  current: null # not EJSONable, cannot use Session.set
 
 Router.map ->
 
@@ -13,14 +13,14 @@ Router.map ->
     template: 'postList'
     waitOn: ->
       Session.set 'postsSelector', {tags: 'projects'}
-      Session.set 'currentPostsSubscription', subscriptions.projects
+      subscriptions.current = subscriptions.projects
 
   @route 'posts',
     template: 'postList'
     path: '/'
     waitOn: ->
       Session.set 'postsSelector', {publish: true}
-      Session.set 'currentPostsSubscription', subscriptions.published
+      subscriptions.current = subscriptions.published
 
 Router.map ->
 

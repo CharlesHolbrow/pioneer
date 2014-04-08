@@ -2,6 +2,11 @@
 Template.postList.posts = ->
   Posts.find(Session.get 'postsSelector', {sort:{'createdAt':-1}})
 
+Template.postList.finished = ->
+  sub = subscriptions.current
+  return false unless sub.ready and sub.ready()
+  return Posts.find().count() < sub.loaded()
+
 # Post Page helpers
 Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))
