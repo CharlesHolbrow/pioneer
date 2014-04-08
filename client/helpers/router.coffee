@@ -6,11 +6,13 @@ window.subscriptions =
   current: null # not EJSONable, cannot use Session.set
 
 window.loadIfNeeded = ()->
-  loadEl= $('.loading-more')[0]
-  return unless loadEl and
-    isElementInViewport(loadEl) and
-    subscriptions.current.ready()
-  subscriptions.current.loadNextPage()
+  setTimeout ->
+    loadEl= $('.loading-more')[0]
+    return unless loadEl and
+      isElementInViewport(loadEl) and
+      subscriptions.current.ready()
+    subscriptions.current.loadNextPage()
+  , 1
 
 Deps.autorun ->
   Session.get 'postsSelector' # make reactive
