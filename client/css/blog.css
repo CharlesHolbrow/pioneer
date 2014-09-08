@@ -76,6 +76,10 @@ header#sidebar h1 {
   margin-bottom: 0;
 }
 
+.river-item img {
+  max-width: 600px;
+}
+
 .bridge {
   /* a bridge runs over the river */
   padding-bottom: 30px;

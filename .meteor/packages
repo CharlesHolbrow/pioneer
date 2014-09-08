@@ -7,9 +7,10 @@ coffeescript
 accounts-ui
 accounts-github
 spiderable
-marked
-momentjs
 accounts-google
 standard-app-packages
-iron-router
-paginated-subscription
+tmeasday:paginated-subscription
+mrt:moment
+iron:router
+chuangbo:marked
+
