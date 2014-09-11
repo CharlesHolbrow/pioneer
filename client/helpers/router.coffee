@@ -84,7 +84,10 @@ Router.configure
   notFoundTemplate: 'missing',
   # loadingTemplate: 'loading'
 
-Router.onAfterAction( ->
-  $('body').scrollTop 0
+# Scroll to top after route changes
+Tracker.autorun( ->
+  current = Router.current()
+  Tracker.afterFlush ->
+    $('body').scrollTop 0
 , except: []
 )
