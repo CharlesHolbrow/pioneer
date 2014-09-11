@@ -25,6 +25,8 @@ Router.map ->
   @route 'projects',
     path: '/projects'
     template: 'postList'
+    data: ->
+      {title: 'Projects'}
     waitOn: ->
       subscriptions.current = subscriptions.projects
       Session.set 'postsSelector', {tags: 'projects'}
@@ -33,6 +35,8 @@ Router.map ->
   @route 'posts',
     template: 'postList'
     path: '/'
+    data: ->
+      {title: 'Blog'}
     waitOn: ->
       subscriptions.current = subscriptions.published
       Session.set 'postsSelector', {publish: true}
@@ -89,5 +93,14 @@ Tracker.autorun( ->
   current = Router.current()
   Tracker.afterFlush ->
     $('body').scrollTop 0
+, except: []
+)
+
+# Update Page title
+Router.onAfterAction( ->
+  data = @data()
+  if data and data.title
+    title = data.title + ' - www.CharlesHolbrow.com'
+  document.title = title or 'www.CharlesHolbrow.com'
 , except: []
 )
