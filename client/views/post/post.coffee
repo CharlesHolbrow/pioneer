@@ -24,7 +24,7 @@ Template.postPage.displayComments = ->
 
 # Post Item helpers
 Template.postItem.date = ->
-  moment(@createdAt).format('MMM D, YYYY - hh:mm:ss')
+  moment(@createdAt).format('MMM D, YYYY - hh:mm')
 
 Template.postItem.ownPost = ->
   Meteor.userId() == this.authorId
