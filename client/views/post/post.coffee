@@ -10,10 +10,17 @@ Template.postList.finished = ->
 
 Template.postList.rendered = ->
   $(window).on 'DOMContentLoaded load resize scroll', loadIfNeeded
+  loadIfNeeded()
 
 # Post Page helpers
 Template.postPage.currentPost = ->
   Posts.findOne(Session.get('currentPostId'))
+
+Template.postPage.displayComments = ->
+  # hacky - this belongs on the post document as a property or method
+  return false if 'projects' in @tags
+  return false if 'about' in @tags
+  return true
 
 # Post Item helpers
 Template.postItem.date = ->

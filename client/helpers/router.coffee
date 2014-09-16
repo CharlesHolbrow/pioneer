@@ -3,10 +3,11 @@ Session.set 'postsSelector', {}
 window.subscriptions =
   published: new Meteor.subscribeWithPagination 'posts', {publish: true}, 3
   projects: new Meteor.subscribeWithPagination 'posts', {tags: 'projects'}, 2
+  awareness: new Meteor.subscribeWithPagination 'posts', {tags: 'awareness'}, 3
   current: null # not EJSONable, cannot use Session.set
 
 window.loadIfNeeded = ()->
-  setTimeout ->
+  Meteor.setTimeout ->
     loadEl= $('.loading-more')[0]
     return unless loadEl and
       isElementInViewport(loadEl) and
@@ -17,7 +18,8 @@ window.loadIfNeeded = ()->
 Deps.autorun ->
   Session.get 'postsSelector' # make reactive
   if subscriptions.published.ready() or subscriptions.projects.ready()
-    loadIfNeeded()
+    if subscriptions.current and subscriptions.current.ready()
+      loadIfNeeded()
 
 Router.map ->
 
@@ -30,6 +32,16 @@ Router.map ->
     waitOn: ->
       subscriptions.current = subscriptions.projects
       Session.set 'postsSelector', {tags: 'projects'}
+      return subscriptions.current
+
+  @route 'awareness',
+    path: '/awareness'
+    template: 'postList'
+    data: ->
+      {title: 'Awareness'}
+    waitOn: ->
+      subscriptions.current = subscriptions.awareness
+      Session.set 'postsSelector', {tags: 'awareness'}
       return subscriptions.current
 
   @route 'posts',
@@ -102,5 +114,6 @@ Router.onAfterAction( ->
   if data and data.title
     title = data.title + ' - www.CharlesHolbrow.com'
   document.title = title or 'www.CharlesHolbrow.com'
+  window.loadIfNeeded()
 , except: []
 )
